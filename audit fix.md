@@ -63,20 +63,29 @@ Forced upgrades may still be necessary in some situations when vulnerabilities c
 - Requires careful testing after execution.
 - Should be used selectively rather than globally whenever possible.
 
-## Peer Dependencies
+## legacy-peer-deps
 
-Peer dependencies describe compatibility expectations between packages rather than automatically installed internal dependencies.
+The `--legacy-peer-deps` flag tells npm to ignore strict peer dependency resolution rules introduced in newer npm versions.
 
-Conflicts involving peer dependencies can occur when multiple packages expect different versions of the same dependency.
+This can allow dependency installations to continue even when packages declare incompatible peer dependency requirements.
 
-Resolving peer dependency issues may require:
+The flag is commonly used in older projects or projects with outdated dependency trees where modern peer dependency enforcement would otherwise block installation.
 
-- Updating related packages together.
-- Installing compatible dependency versions manually.
-- Replacing outdated packages.
-- Reviewing ecosystem compatibility requirements.
+### Characteristics
 
-Peer dependency warnings should not always be ignored, especially during larger dependency migrations or modernization work.
+- Ignores strict peer dependency conflicts.
+- Can help older projects install successfully without immediate dependency migrations.
+- Useful temporarily during dependency maintenance or modernization work.
+- May allow incompatible package combinations to install silently.
+- Should not be treated as a permanent long-term solution.
+- Excessive reliance on the flag can hide underlying ecosystem compatibility problems.
+
+### Risks
+
+- Potential runtime incompatibilities between packages.
+- Hidden dependency conflicts.
+- Increased difficulty debugging package-related issues later.
+- Can delay proper dependency modernization work.
 
 ## Dependency Overrides
 
@@ -104,8 +113,9 @@ Overrides mainly affect subdependencies rather than top-level application depend
 3. Test the application after updates.
 4. Avoid using `--force` blindly across the entire project.
 5. Use selective upgrades and overrides where appropriate.
-6. Verify both development and production builds after dependency changes.
-7. Periodically repeat dependency maintenance rather than delaying updates for long periods.
+6. Use `--legacy-peer-deps` cautiously and temporarily where necessary.
+7. Verify both development and production builds after dependency changes.
+8. Periodically repeat dependency maintenance rather than delaying updates for long periods.
 
 ## Post-Update Verification
 
@@ -119,5 +129,7 @@ Overrides mainly affect subdependencies rather than top-level application depend
 ## Useful Links
 
 - npm audit Documentation: https://docs.npmjs.com/cli/v10/commands/npm-audit
-- npm package.json Overrides: https://docs.npmjs.com/cli/v10/configuring-npm/package-json#overrides
+- npm Overrides Documentation: https://docs.npmjs.com/cli/v10/configuring-npm/package-json#overrides
+- npm package.json Documentation: https://docs.npmjs.com/cli/v10/configuring-npm/package-json
+- npm Dependency Resolution Documentation: https://docs.npmjs.com/cli/v10/using-npm/dependency-resolution
 - Semantic Versioning: https://semver.org/
