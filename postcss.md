@@ -14,7 +14,7 @@ PostCSS is also commonly used for:
 
 - CSS optimization and minification.
 - Modern CSS feature transformations.
-- Tailwind CSS integration.
+- Tailwind(v3) CSS integration.
 - CSS nesting support.
 - Variable and syntax processing.
 - Build-time CSS tooling pipelines.
