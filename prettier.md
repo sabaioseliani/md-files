@@ -41,3 +41,9 @@ Prettier is commonly installed as a development dependency and integrated into:
 - CI formatting checks.
 - Package.json formatting scripts.
 
+## Useful Links
+
+- Prettier Official Website: https://prettier.io/
+- Prettier Documentation: https://prettier.io/docs/en/
+- Prettier Configuration Options: https://prettier.io/docs/en/options.html
+- eslint-config-prettier: https://github.com/prettier/eslint-config-prettier
