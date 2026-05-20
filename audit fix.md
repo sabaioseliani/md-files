@@ -132,4 +132,3 @@ Overrides mainly affect subdependencies rather than top-level application depend
 - npm Overrides Documentation: https://docs.npmjs.com/cli/v10/configuring-npm/package-json#overrides
 - npm package.json Documentation: https://docs.npmjs.com/cli/v10/configuring-npm/package-json
 - npm Dependency Resolution Documentation: https://docs.npmjs.com/cli/v10/using-npm/dependency-resolution
-- Semantic Versioning: https://semver.org/
