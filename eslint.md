@@ -1,7 +1,10 @@
 # ${\color{lightblue}\text{ESLint}}$
 
-## ${\color{lightblue}\text{Description}}$
+[Description](#description) · [Pros](#pros) · [Cons / Risks](#cons--risks) · [Configuration Strictness](#configuration-strictness) · [Useful Links](#useful-links)
 
+---
+
+## ${\color{lightblue}\text{Description}}$ <a id="description"></a>
 ESLint is a static code analysis and linting tool for JavaScript, TypeScript, Vue, and other frontend ecosystem technologies.
 
 Its purpose is to analyze source code for potential problems, inconsistent patterns, unsafe practices, maintainability concerns, and possible developer mistakes before runtime.
@@ -14,8 +17,7 @@ The Flat Config system represents the current recommended ESLint configuration a
 
 ESLint can range from very minimal setups to extremely strict rule systems depending on project requirements and development philosophy.
 
-## ${\color{lightgreen}\text{Pros}}$
-
+## ${\color{lightgreen}\text{Pros}}$ <a id="pros"></a>
 - Helps detect potential bugs before runtime.
 - Encourages consistent coding patterns.
 - Improves long-term maintainability.
@@ -29,8 +31,7 @@ ESLint can range from very minimal setups to extremely strict rule systems depen
 - Works well together with TypeScript and modern frontend tooling ecosystems.
 - Flat Config and ES Module setups align better with modern frontend architecture patterns.
 
-## ${\color{salmon}\text{Cons / Risks}}$
-
+## ${\color{salmon}\text{Cons / Risks}}$ <a id="cons--risks"></a>
 - Strict configurations can become noisy or frustrating.
 - Overly aggressive rules may reduce development speed.
 - Large legacy codebases may initially produce many warnings or errors.
@@ -40,14 +41,13 @@ ESLint can range from very minimal setups to extremely strict rule systems depen
 - Initial setup and rule tuning may require experimentation.
 - Some rules may conflict with existing coding habits or legacy patterns.
 
-## ${\color{lightblue}\text{Configuration Strictness}}$
+## ${\color{lightblue}\text{Configuration Strictness}}$ <a id="configuration-strictness"></a>
 
 ### ${\color{gold}\text{Strict Configuration Philosophy}}$
 
 A strict ESLint setup heavily enforces code quality, maintainability, architectural consistency, and safer development practices.
 
 #### ${\color{lightgreen}\text{Pros}}$
-
 - Stronger code quality enforcement.
 - Better long-term maintainability.
 - Encourages safer coding patterns.
@@ -58,7 +58,6 @@ A strict ESLint setup heavily enforces code quality, maintainability, architectu
 - Encourages more deliberate and structured code organization.
 
 #### ${\color{salmon}\text{Cons}}$
-
 - Can slow development velocity.
 - May create large amounts of warnings or errors initially.
 - Developers may spend excessive time satisfying lint rules.
@@ -72,7 +71,6 @@ A strict ESLint setup heavily enforces code quality, maintainability, architectu
 A lenient ESLint setup focuses primarily on preventing major mistakes while minimizing developer friction and configuration overhead.
 
 #### ${\color{lightgreen}\text{Pros}}$
-
 - Faster development workflow.
 - Lower configuration complexity.
 - Less developer frustration from excessive warnings.
@@ -81,7 +79,6 @@ A lenient ESLint setup focuses primarily on preventing major mistakes while mini
 - Allows more flexibility for different coding styles and architectural approaches.
 
 #### ${\color{salmon}\text{Cons}}$
-
 - More inconsistent code patterns may accumulate over time.
 - Potentially weaker enforcement of maintainability standards.
 - Unsafe or problematic patterns may go unnoticed more easily.
@@ -89,12 +86,17 @@ A lenient ESLint setup focuses primarily on preventing major mistakes while mini
 - Architectural consistency may become harder to maintain in larger projects.
 - Developers may rely more heavily on manual code review quality control.
 
-## ${\color{lightblue}\text{Useful Links}}$
+## ${\color{lightblue}\text{Useful Links}}$ <a id="useful-links"></a>
 
-- ESLint Official Website: https://eslint.org/
-- ESLint Documentation: https://eslint.org/docs/latest/
-- ESLint Flat Config Documentation: https://eslint.org/docs/latest/use/configure/configuration-files
-- ESLint Rules Reference: https://eslint.org/docs/latest/rules/
-- typescript-eslint: https://typescript-eslint.io/
-- eslint-plugin-vue: https://eslint.vuejs.org/
-- eslint-config-prettier: https://github.com/prettier/eslint-config-prettier
+<details>
+<summary>📎 Click to expand links</summary>
+
+- [ESLint Official Website](https://eslint.org/)
+- [ESLint Documentation](https://eslint.org/docs/latest/)
+- [ESLint Flat Config Documentation](https://eslint.org/docs/latest/use/configure/configuration-files)
+- [ESLint Rules Reference](https://eslint.org/docs/latest/rules/)
+- [typescript-eslint](https://typescript-eslint.io/)
+- [eslint-plugin-vue](https://eslint.vuejs.org/)
+- [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier)
+
+</details>
