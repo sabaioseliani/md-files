@@ -1,6 +1,6 @@
 # ${\color{lightblue}\text{Dependency Vulnerabilities and Package Maintenance}}$
 
-## ${\color{cyan}\text{Description}}$
+## ${\color{lightblue}\text{Description}}$
 
 Modern JavaScript projects often rely on many third-party libraries. These libraries also depend on other libraries internally, creating a dependency tree that can become very large over time.
 
@@ -29,26 +29,26 @@ Tools such as `npm audit`, `npm audit fix`, dependency overrides, and manual dep
 - Blindly forcing updates may temporarily or permanently break functionality.
 - Some fixes may require manual testing and debugging after updates.
 
-## ${\color{violet}\text{npm audit}}$
+## ${\color{plum}\text{npm audit}}$
 
 `npm audit` scans installed dependencies and reports known vulnerabilities within both direct dependencies and nested subdependencies.
 
 The severity and exploitability of vulnerabilities can vary significantly. Not every reported vulnerability necessarily affects production behavior directly, but unresolved vulnerabilities should still be reviewed carefully.
 
-## ${\color{violet}\text{npm audit fix}}$
+## ${\color{plum}\text{npm audit fix}}$
 
 `npm audit fix` attempts to automatically resolve vulnerabilities using compatible package updates that avoid breaking semantic versioning expectations whenever possible.
 
 In many cases, this resolves vulnerabilities through safe patch or minor updates without introducing breaking changes. This is generally the safest automated first step when performing dependency maintenance.
 
-### ${\color{plum}\text{Characteristics}}$
+### ${\color{lightgreen}\text{Characteristics}}$
 
 - Attempts non-breaking dependency updates.
 - Usually respects semantic version compatibility ranges.
 - Often resolves vulnerabilities safely without manual intervention.
 - Lower risk of breaking the project compared to forced upgrades.
 
-## ${\color{violet}\text{npm audit fix --force}}$
+## ${\color{gold}\text{npm audit fix --force}}$
 
 `npm audit fix --force` allows npm to install dependency versions outside normal compatibility ranges, including major-version upgrades that may introduce breaking changes.
 
@@ -56,14 +56,14 @@ This should not be performed blindly across an entire project without understand
 
 Forced upgrades may still be necessary in some situations when vulnerabilities cannot otherwise be resolved.
 
-### ${\color{plum}\text{Characteristics}}$
+### ${\color{gold}\text{Characteristics}}$
 
 - Can introduce breaking changes.
 - May upgrade dependencies across major versions.
 - Requires careful testing after execution.
 - Should be used selectively rather than globally whenever possible.
 
-## ${\color{pink}\text{legacy-peer-deps}}$
+## ${\color{plum}\text{legacy-peer-deps}}$
 
 The `--legacy-peer-deps` flag tells npm to ignore strict peer dependency resolution rules introduced in newer npm versions.
 
@@ -71,7 +71,7 @@ This can allow dependency installations to continue even when packages declare i
 
 The flag is commonly used in older projects or projects with outdated dependency trees where modern peer dependency enforcement would otherwise block installation.
 
-### ${\color{lightpink}\text{Characteristics}}$
+### ${\color{gold}\text{Characteristics}}$
 
 - Ignores strict peer dependency conflicts.
 - Can help older projects install successfully without immediate dependency migrations.
@@ -87,7 +87,7 @@ The flag is commonly used in older projects or projects with outdated dependency
 - Increased difficulty debugging package-related issues later.
 - Can delay proper dependency modernization work.
 
-## ${\color{orange}\text{Dependency Overrides}}$
+## ${\color{plum}\text{Dependency Overrides}}$
 
 Overrides allow specific nested subdependencies to be forcibly replaced with different versions without directly modifying the parent package itself.
 
@@ -99,14 +99,14 @@ This can be useful when:
 
 Overrides mainly affect subdependencies rather than top-level application dependencies installed directly by the project.
 
-### ${\color{gold}\text{Characteristics}}$
+### ${\color{lightgreen}\text{Characteristics}}$
 
 - More targeted than forced global upgrades.
 - Useful for resolving nested dependency vulnerabilities.
 - Can reduce vulnerability exposure without major package migrations.
 - Still requires testing to verify compatibility.
 
-## ${\color{cyan}\text{Recommended Approach}}$
+## ${\color{lightblue}\text{Recommended Approach}}$
 
 1. Run `npm audit` to review reported vulnerabilities.
 2. Use `npm audit fix` first whenever possible.
