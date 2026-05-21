@@ -1,6 +1,6 @@
 # ${\color{lightblue}\text{Testing}}$
 
-[Vitest](#vitest) · [Jest](#jest) · [Cypress](#cypress) · [Playwright](#playwright) · [Testing Library](#testing-library)
+[Vitest](#vitest) · [Jest](#jest) · [Cypress](#cypress) · [Playwright](#playwright)
 
 ---
 
@@ -137,32 +137,3 @@ Playwright is commonly used for E2E testing, browser automation, and advanced te
 
 ---
 
-# ${\color{lightblue}\text{Testing Library}}$ <a id="testing-library"></a>
-
-## ${\color{lightblue}\text{Description}}$
-Testing Library is a family of testing utilities focused on testing applications from the user's perspective rather than implementation details.
-
-It is commonly used together with frameworks such as Vitest or Jest.
-
-Testing Library encourages testing real rendered behavior instead of internal component implementation details.
-
-## ${\color{lightgreen}\text{Pros}}$
-- Encourages user-focused testing patterns.
-- Helps reduce overly implementation-specific tests.
-- Works well with React, Vue, Angular, and other ecosystems.
-- Lightweight and flexible.
-- Integrates well with Vitest and Jest.
-
-## ${\color{salmon}\text{Cons}}$
-- Not a standalone full testing runner.
-- Less focused on advanced browser automation features.
-
-## ${\color{lightblue}\text{Useful Links}}$ <a id="testing-library-links"></a>
-
-<details>
-<summary>📎 Click to expand links</summary>
-
-- [Testing Library Official Website](https://testing-library.com/)
-- [Testing Library Documentation](https://testing-library.com/docs/)
-
-</details>
