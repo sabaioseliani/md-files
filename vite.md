@@ -1,6 +1,6 @@
-# Vite
+# ${\color{lightblue}\text{Vite}}$
 
-## Description
+## ${\color{lightblue}\text{Description}}$
 
 Vite is a modern frontend build tool created by the Vue ecosystem and now widely used across frameworks such as Vue, React, and Svelte.
 
@@ -10,7 +10,7 @@ Vite also includes a production build pipeline capable of generating optimized s
 
 Vite represents the modern direction of frontend tooling within both the Vue ecosystem and the broader JavaScript ecosystem. It focuses on improving development workflows, simplifying configuration, and reducing long-term maintenance complexity compared to many older Webpack-based setups.
 
-## Pros
+## ${\color{lightgreen}\text{Pros}}$
 
 - Extremely fast development server startup.
 - Very fast hot module replacement (HMR).
@@ -27,7 +27,7 @@ Vite represents the modern direction of frontend tooling within both the Vue eco
 - Lower tooling overhead and generally improved developer experience.
 - Better compatibility with modern frontend libraries and tooling ecosystems.
 
-## Cons / Migration Risks
+## ${\color{salmon}\text{Cons / Migration Risks}}$
 
 - Existing Vue CLI or Webpack-specific configuration may require rewriting.
 - Some older plugins or dependencies may rely on Webpack-specific behavior.
@@ -36,7 +36,7 @@ Vite represents the modern direction of frontend tooling within both the Vue eco
 - Documentation and older tutorials may still assume Vue CLI/Webpack conventions.
 - Migration may temporarily introduce instability while tooling differences are resolved.
 
-## Expected Migration Changes
+## ${\color{plum}\text{Expected Migration Changes}}$
 
 - Replace Vue CLI tooling with Vite tooling.
 - Remove outdated Vue CLI and Webpack-specific dependencies.
@@ -47,7 +47,7 @@ Vite represents the modern direction of frontend tooling within both the Vue eco
 - Review aliases and static asset imports.
 - Validate development and production build behavior after migration.
 
-## Post-Migration Verification
+## ${\color{gold}\text{Post-Migration Verification}}$
 
 - Development server starts correctly.
 - Hot reload functions properly.
@@ -57,7 +57,7 @@ Vite represents the modern direction of frontend tooling within both the Vue eco
 - Environment variables function as expected.
 - No unexpected console errors or build warnings remain.
 
-## Useful Links
+## ${\color{lightblue}\text{Useful Links}}$
 
 - Vite Official Website: https://vite.dev/
 - Vite Guide: https://vite.dev/guide/
