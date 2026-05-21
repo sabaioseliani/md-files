@@ -1,6 +1,6 @@
-# ESLint
+# ${\color{lightblue}\text{ESLint}}$
 
-## Description
+## ${\color{lightblue}\text{Description}}$
 
 ESLint is a static code analysis and linting tool for JavaScript, TypeScript, Vue, and other frontend ecosystem technologies.
 
@@ -14,7 +14,7 @@ The Flat Config system represents the current recommended ESLint configuration a
 
 ESLint can range from very minimal setups to extremely strict rule systems depending on project requirements and development philosophy.
 
-## Pros
+## ${\color{lightgreen}\text{Pros}}$
 
 - Helps detect potential bugs before runtime.
 - Encourages consistent coding patterns.
@@ -29,7 +29,7 @@ ESLint can range from very minimal setups to extremely strict rule systems depen
 - Works well together with TypeScript and modern frontend tooling ecosystems.
 - Flat Config and ES Module setups align better with modern frontend architecture patterns.
 
-## Cons / Risks
+## ${\color{salmon}\text{Cons / Risks}}$
 
 - Strict configurations can become noisy or frustrating.
 - Overly aggressive rules may reduce development speed.
@@ -40,13 +40,13 @@ ESLint can range from very minimal setups to extremely strict rule systems depen
 - Initial setup and rule tuning may require experimentation.
 - Some rules may conflict with existing coding habits or legacy patterns.
 
-## Configuration Strictness
+## ${\color{lightblue}\text{Configuration Strictness}}$
 
-### Strict Configuration Philosophy
+### ${\color{gold}\text{Strict Configuration Philosophy}}$
 
 A strict ESLint setup heavily enforces code quality, maintainability, architectural consistency, and safer development practices.
 
-#### Pros
+#### ${\color{lightgreen}\text{Pros}}$
 
 - Stronger code quality enforcement.
 - Better long-term maintainability.
@@ -57,7 +57,7 @@ A strict ESLint setup heavily enforces code quality, maintainability, architectu
 - Can reduce technical debt accumulation over time.
 - Encourages more deliberate and structured code organization.
 
-#### Cons
+#### ${\color{salmon}\text{Cons}}$
 
 - Can slow development velocity.
 - May create large amounts of warnings or errors initially.
@@ -67,11 +67,11 @@ A strict ESLint setup heavily enforces code quality, maintainability, architectu
 - Can become frustrating if rules are excessively restrictive.
 - Excessive strictness may encourage disabling rules rather than improving architecture.
 
-### Lenient Configuration Philosophy
+### ${\color{gold}\text{Lenient Configuration Philosophy}}$
 
 A lenient ESLint setup focuses primarily on preventing major mistakes while minimizing developer friction and configuration overhead.
 
-#### Pros
+#### ${\color{lightgreen}\text{Pros}}$
 
 - Faster development workflow.
 - Lower configuration complexity.
@@ -80,7 +80,7 @@ A lenient ESLint setup focuses primarily on preventing major mistakes while mini
 - Lower maintenance overhead for lint configuration itself.
 - Allows more flexibility for different coding styles and architectural approaches.
 
-#### Cons
+#### ${\color{salmon}\text{Cons}}$
 
 - More inconsistent code patterns may accumulate over time.
 - Potentially weaker enforcement of maintainability standards.
@@ -89,7 +89,7 @@ A lenient ESLint setup focuses primarily on preventing major mistakes while mini
 - Architectural consistency may become harder to maintain in larger projects.
 - Developers may rely more heavily on manual code review quality control.
 
-## Useful Links
+## ${\color{lightblue}\text{Useful Links}}$
 
 - ESLint Official Website: https://eslint.org/
 - ESLint Documentation: https://eslint.org/docs/latest/
