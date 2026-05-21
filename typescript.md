@@ -1,6 +1,6 @@
-# TypeScript
+# ${\color{lightblue}\text{TypeScript}}$
 
-## Description
+## ${\color{lightblue}\text{Description}}$
 
 TypeScript is a statically typed superset of JavaScript developed by Microsoft.
 
@@ -14,7 +14,7 @@ TypeScript can be configured with varying levels of strictness depending on proj
 
 Because strict typing can significantly increase the amount of required type definitions and interfaces, many projects also use automated tooling to generate TypeScript typings directly from backend APIs, schemas, or OpenAPI specifications.
 
-## Pros
+## ${\color{lightgreen}\text{Pros}}$
 
 - Improves type safety and compile-time error detection.
 - Helps detect many bugs before runtime.
@@ -27,7 +27,7 @@ Because strict typing can significantly increase the amount of required type def
 - Integrates well with ESLint and modern build tooling.
 - Widely adopted and actively maintained.
 
-## Cons / Risks
+## ${\color{salmon}\text{Cons / Risks}}$
 
 - Adds additional complexity compared to plain JavaScript.
 - Strict typing may initially slow development velocity.
@@ -38,9 +38,9 @@ Because strict typing can significantly increase the amount of required type def
 - Build configuration and tooling complexity may increase.
 - Excessively strict typing may create unnecessary development friction.
 
-## Configuration Strictness
+## ${\color{lightblue}\text{Configuration Strictness}}$
 
-### Strict Configuration Philosophy
+### ${\color{gold}\text{Strict Configuration Philosophy}}$
 
 A strict TypeScript setup heavily enforces type safety, explicit typing, null safety, architectural consistency, and stricter compile-time guarantees.
 
@@ -52,7 +52,7 @@ Common examples include:
 - `noUncheckedIndexedAccess`
 - `exactOptionalPropertyTypes`
 
-#### Pros
+#### ${\color{lightgreen}\text{Pros}}$
 
 - Stronger compile-time safety guarantees.
 - Better long-term maintainability.
@@ -62,7 +62,7 @@ Common examples include:
 - Improves consistency of data contracts and interfaces.
 - Helps surface architectural problems earlier.
 
-#### Cons
+#### ${\color{salmon}\text{Cons}}$
 
 - Can significantly increase development overhead.
 - May require many explicit interfaces and type definitions.
@@ -71,7 +71,7 @@ Common examples include:
 - Strict typing can become difficult when integrating loosely typed third-party libraries.
 - Developers may spend excessive time satisfying type requirements rather than solving business logic problems.
 
-### Lenient Configuration Philosophy
+### ${\color{gold}\text{Lenient Configuration Philosophy}}$
 
 A lenient TypeScript setup focuses primarily on lightweight type safety while minimizing development friction and excessive typing overhead.
 
@@ -81,7 +81,7 @@ Common examples include:
 - More reliance on inferred types.
 - More permissive handling of `any` or nullable values.
 
-#### Pros
+#### ${\color{lightgreen}\text{Pros}}$
 
 - Faster development workflow.
 - Lower onboarding complexity.
@@ -90,7 +90,7 @@ Common examples include:
 - Better flexibility during rapid iteration or prototyping.
 - Lower friction when integrating older or loosely typed libraries.
 
-#### Cons
+#### ${\color{salmon}\text{Cons}}$
 
 - Weaker compile-time safety guarantees.
 - More type-related bugs may reach runtime.
@@ -99,7 +99,7 @@ Common examples include:
 - Refactoring may become less reliable in larger projects.
 - Less explicit documentation of application data structures.
 
-## Automatic Type Generation
+## ${\color{plum}\text{Automatic Type Generation}}$
 
 Highly strict TypeScript configurations may require large amounts of interfaces, DTOs, API response types, and validation structures.
 
@@ -124,7 +124,7 @@ These tools can automatically generate TypeScript interfaces, API clients, reque
 
 This helps reduce duplication, improves synchronization between frontend and backend contracts, and lowers the maintenance burden of highly strict typing systems.
 
-## Recommended Approach
+## ${\color{gold}\text{Recommended Approach}}$
 
 - Use TypeScript in modern frontend projects whenever practical.
 - Prefer gradual adoption rather than immediate maximum strictness.
@@ -133,7 +133,7 @@ This helps reduce duplication, improves synchronization between frontend and bac
 - Use automated type generation when backend schemas are available.
 - Avoid excessive type complexity that harms readability without practical benefit.
 
-## Post-Integration Verification
+## ${\color{gold}\text{Post-Integration Verification}}$
 
 - TypeScript compilation succeeds without configuration issues.
 - Editor tooling and autocomplete function correctly.
@@ -142,7 +142,7 @@ This helps reduce duplication, improves synchronization between frontend and bac
 - Generated types remain synchronized with backend schemas if automated generation is used.
 - Type rules improve safety without excessive developer friction.
 
-## Useful Links
+## ${\color{lightblue}\text{Useful Links}}$
 
 - TypeScript Official Website: https://www.typescriptlang.org/
 - TypeScript Documentation: https://www.typescriptlang.org/docs/
