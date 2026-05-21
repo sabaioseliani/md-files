@@ -1,7 +1,10 @@
 # ${\color{lightblue}\text{Vite}}$
 
-## ${\color{lightblue}\text{Description}}$
+[Description](#description) · [Pros](#pros) · [Cons / Migration Risks](#cons--migration-risks) · [Expected Migration Changes](#expected-migration-changes) · [Post-Migration Verification](#post-migration-verification) · [Useful Links](#useful-links)
 
+---
+
+## ${\color{lightblue}\text{Description}}$ <a id="description"></a>
 Vite is a modern frontend build tool created by the Vue ecosystem and now widely used across frameworks such as Vue, React, and Svelte.
 
 Its goal is to provide a faster, simpler, and more maintainable development environment for modern web applications. Unlike older tooling approaches that heavily bundle the application during development, Vite uses native ES modules together with optimized dependency pre-bundling and fast hot module replacement (HMR). This allows the development server to start almost instantly while making updates during development significantly more responsive.
@@ -10,8 +13,7 @@ Vite also includes a production build pipeline capable of generating optimized s
 
 Vite represents the modern direction of frontend tooling within both the Vue ecosystem and the broader JavaScript ecosystem. It focuses on improving development workflows, simplifying configuration, and reducing long-term maintenance complexity compared to many older Webpack-based setups.
 
-## ${\color{lightgreen}\text{Pros}}$
-
+## ${\color{lightgreen}\text{Pros}}$ <a id="pros"></a>
 - Extremely fast development server startup.
 - Very fast hot module replacement (HMR).
 - Cleaner and more modern tooling architecture.
@@ -27,8 +29,7 @@ Vite represents the modern direction of frontend tooling within both the Vue eco
 - Lower tooling overhead and generally improved developer experience.
 - Better compatibility with modern frontend libraries and tooling ecosystems.
 
-## ${\color{salmon}\text{Cons / Migration Risks}}$
-
+## ${\color{salmon}\text{Cons / Migration Risks}}$ <a id="cons--migration-risks"></a>
 - Existing Vue CLI or Webpack-specific configuration may require rewriting.
 - Some older plugins or dependencies may rely on Webpack-specific behavior.
 - Environment variables, aliases, static asset handling, or dev-server behavior may need adjustments.
@@ -36,8 +37,7 @@ Vite represents the modern direction of frontend tooling within both the Vue eco
 - Documentation and older tutorials may still assume Vue CLI/Webpack conventions.
 - Migration may temporarily introduce instability while tooling differences are resolved.
 
-## ${\color{plum}\text{Expected Migration Changes}}$
-
+## ${\color{plum}\text{Expected Migration Changes}}$ <a id="expected-migration-changes"></a>
 - Replace Vue CLI tooling with Vite tooling.
 - Remove outdated Vue CLI and Webpack-specific dependencies.
 - Add Vite and related plugins.
@@ -47,8 +47,7 @@ Vite represents the modern direction of frontend tooling within both the Vue eco
 - Review aliases and static asset imports.
 - Validate development and production build behavior after migration.
 
-## ${\color{gold}\text{Post-Migration Verification}}$
-
+## ${\color{gold}\text{Post-Migration Verification}}$ <a id="post-migration-verification"></a>
 - Development server starts correctly.
 - Hot reload functions properly.
 - Production build completes successfully.
@@ -57,9 +56,14 @@ Vite represents the modern direction of frontend tooling within both the Vue eco
 - Environment variables function as expected.
 - No unexpected console errors or build warnings remain.
 
-## ${\color{lightblue}\text{Useful Links}}$
+## ${\color{lightblue}\text{Useful Links}}$ <a id="useful-links"></a>
 
-- Vite Official Website: https://vite.dev/
-- Vite Guide: https://vite.dev/guide/
-- Vue CLI Migration Notice: https://cli.vuejs.org/
-- VueSchool Vue CLI to Vite Migration Guide: https://vueschool.io/articles/vuejs-tutorials/how-to-migrate-from-vue-cli-to-vite/
+<details>
+<summary>📎 Click to expand links</summary>
+
+- [Vite Official Website](https://vite.dev/)
+- [Vite Guide](https://vite.dev/guide/)
+- [Vue CLI Migration Notice](https://cli.vuejs.org/)
+- [VueSchool Vue CLI to Vite Migration Guide](https://vueschool.io/articles/vuejs-tutorials/how-to-migrate-from-vue-cli-to-vite/)
+
+</details>
