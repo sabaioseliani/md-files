@@ -1,7 +1,10 @@
 # ${\color{lightblue}\text{Dependency Vulnerabilities and Package Maintenance}}$
 
-## ${\color{lightblue}\text{Description}}$
+[Description](#description) · [Pros](#pros) · [Cons / Risks](#cons--risks) · [npm audit](#npm-audit) · [npm audit fix](#npm-audit-fix) · [npm audit fix --force](#npm-audit-fix---force) · [legacy-peer-deps](#legacy-peer-deps) · [Dependency Overrides](#dependency-overrides) · [Recommended Approach](#recommended-approach) · [Post-Update Verification](#post-update-verification) · [Useful Links](#useful-links)
 
+---
+
+## ${\color{lightblue}\text{Description}}$ <a id="description"></a>
 Modern JavaScript projects often rely on many third-party libraries. These libraries also depend on other libraries internally, creating a dependency tree that can become very large over time.
 
 As dependencies age, known security vulnerabilities may eventually appear within some packages or their subdependencies. Because of this, projects require periodic dependency maintenance to remain secure, stable, and compatible with the modern ecosystem.
@@ -10,8 +13,7 @@ The goal of dependency maintenance is not only to reduce vulnerabilities, but al
 
 Tools such as `npm audit`, `npm audit fix`, dependency overrides, and manual dependency updates can help resolve known vulnerabilities while minimizing the risk of introducing breaking changes.
 
-## ${\color{lightgreen}\text{Pros}}$
-
+## ${\color{lightgreen}\text{Pros}}$ <a id="pros"></a>
 - Reduces known security vulnerabilities.
 - Helps keep the project aligned with actively maintained packages.
 - Improves long-term maintainability.
@@ -20,8 +22,7 @@ Tools such as `npm audit`, `npm audit fix`, dependency overrides, and manual dep
 - May improve performance, stability, and bug fixes indirectly through updated packages.
 - Helps reduce technical debt accumulation over time.
 
-## ${\color{salmon}\text{Cons / Risks}}$
-
+## ${\color{salmon}\text{Cons / Risks}}$ <a id="cons--risks"></a>
 - Dependency updates can introduce breaking changes.
 - Some vulnerabilities may require major-version upgrades to resolve safely.
 - Older libraries may no longer be actively maintained.
@@ -29,27 +30,23 @@ Tools such as `npm audit`, `npm audit fix`, dependency overrides, and manual dep
 - Blindly forcing updates may temporarily or permanently break functionality.
 - Some fixes may require manual testing and debugging after updates.
 
-## ${\color{plum}\text{npm audit}}$
-
+## ${\color{plum}\text{npm audit}}$ <a id="npm-audit"></a>
 `npm audit` scans installed dependencies and reports known vulnerabilities within both direct dependencies and nested subdependencies.
 
 The severity and exploitability of vulnerabilities can vary significantly. Not every reported vulnerability necessarily affects production behavior directly, but unresolved vulnerabilities should still be reviewed carefully.
 
-## ${\color{plum}\text{npm audit fix}}$
-
+## ${\color{plum}\text{npm audit fix}}$ <a id="npm-audit-fix"></a>
 `npm audit fix` attempts to automatically resolve vulnerabilities using compatible package updates that avoid breaking semantic versioning expectations whenever possible.
 
 In many cases, this resolves vulnerabilities through safe patch or minor updates without introducing breaking changes. This is generally the safest automated first step when performing dependency maintenance.
 
 ### ${\color{lightgreen}\text{Characteristics}}$
-
 - Attempts non-breaking dependency updates.
 - Usually respects semantic version compatibility ranges.
 - Often resolves vulnerabilities safely without manual intervention.
 - Lower risk of breaking the project compared to forced upgrades.
 
-## ${\color{gold}\text{npm audit fix --force}}$
-
+## ${\color{gold}\text{npm audit fix --force}}$ <a id="npm-audit-fix---force"></a>
 `npm audit fix --force` allows npm to install dependency versions outside normal compatibility ranges, including major-version upgrades that may introduce breaking changes.
 
 This should not be performed blindly across an entire project without understanding the affected packages and testing the application afterward.
@@ -57,14 +54,12 @@ This should not be performed blindly across an entire project without understand
 Forced upgrades may still be necessary in some situations when vulnerabilities cannot otherwise be resolved.
 
 ### ${\color{gold}\text{Characteristics}}$
-
 - Can introduce breaking changes.
 - May upgrade dependencies across major versions.
 - Requires careful testing after execution.
 - Should be used selectively rather than globally whenever possible.
 
-## ${\color{plum}\text{legacy-peer-deps}}$
-
+## ${\color{plum}\text{legacy-peer-deps}}$ <a id="legacy-peer-deps"></a>
 The `--legacy-peer-deps` flag tells npm to ignore strict peer dependency resolution rules introduced in newer npm versions.
 
 This can allow dependency installations to continue even when packages declare incompatible peer dependency requirements.
@@ -72,7 +67,6 @@ This can allow dependency installations to continue even when packages declare i
 The flag is commonly used in older projects or projects with outdated dependency trees where modern peer dependency enforcement would otherwise block installation.
 
 ### ${\color{gold}\text{Characteristics}}$
-
 - Ignores strict peer dependency conflicts.
 - Can help older projects install successfully without immediate dependency migrations.
 - Useful temporarily during dependency maintenance or modernization work.
@@ -81,18 +75,15 @@ The flag is commonly used in older projects or projects with outdated dependency
 - Excessive reliance on the flag can hide underlying ecosystem compatibility problems.
 
 ### ${\color{salmon}\text{Risks}}$
-
 - Potential runtime incompatibilities between packages.
 - Hidden dependency conflicts.
 - Increased difficulty debugging package-related issues later.
 - Can delay proper dependency modernization work.
 
-## ${\color{plum}\text{Dependency Overrides}}$
-
+## ${\color{plum}\text{Dependency Overrides}}$ <a id="dependency-overrides"></a>
 Overrides allow specific nested subdependencies to be forcibly replaced with different versions without directly modifying the parent package itself.
 
 This can be useful when:
-
 - A vulnerability exists only within a nested dependency.
 - The parent package has not yet updated its dependency tree.
 - A safer subdependency version is known to work correctly.
@@ -100,14 +91,12 @@ This can be useful when:
 Overrides mainly affect subdependencies rather than top-level application dependencies installed directly by the project.
 
 ### ${\color{lightgreen}\text{Characteristics}}$
-
 - More targeted than forced global upgrades.
 - Useful for resolving nested dependency vulnerabilities.
 - Can reduce vulnerability exposure without major package migrations.
 - Still requires testing to verify compatibility.
 
-## ${\color{lightblue}\text{Recommended Approach}}$
-
+## ${\color{lightblue}\text{Recommended Approach}}$ <a id="recommended-approach"></a>
 1. Run `npm audit` to review reported vulnerabilities.
 2. Use `npm audit fix` first whenever possible.
 3. Test the application after updates.
@@ -117,8 +106,7 @@ Overrides mainly affect subdependencies rather than top-level application depend
 7. Verify both development and production builds after dependency changes.
 8. Periodically repeat dependency maintenance rather than delaying updates for long periods.
 
-## ${\color{gold}\text{Post-Update Verification}}$
-
+## ${\color{gold}\text{Post-Update Verification}}$ <a id="post-update-verification"></a>
 - Development server starts correctly.
 - Production build completes successfully.
 - No major console errors appear.
@@ -126,9 +114,14 @@ Overrides mainly affect subdependencies rather than top-level application depend
 - Dependency warnings are reviewed and understood.
 - Vulnerability count is reduced without introducing major instability.
 
-## ${\color{lightblue}\text{Useful Links}}$
+## ${\color{lightblue}\text{Useful Links}}$ <a id="useful-links"></a>
 
-- npm audit Documentation: https://docs.npmjs.com/cli/v10/commands/npm-audit
-- npm Overrides Documentation: https://docs.npmjs.com/cli/v10/configuring-npm/package-json#overrides
-- npm package.json Documentation: https://docs.npmjs.com/cli/v10/configuring-npm/package-json
-- npm Dependency Resolution Documentation: https://docs.npmjs.com/cli/v10/using-npm/dependency-resolution
+<details>
+<summary>📎 Click to expand links</summary>
+
+- [npm audit Documentation](https://docs.npmjs.com/cli/v10/commands/npm-audit)
+- [npm Overrides Documentation](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#overrides)
+- [npm package.json Documentation](https://docs.npmjs.com/cli/v10/configuring-npm/package-json)
+- [npm Dependency Resolution Documentation](https://docs.npmjs.com/cli/v10/using-npm/dependency-resolution)
+
+</details>
