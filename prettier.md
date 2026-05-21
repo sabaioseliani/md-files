@@ -1,6 +1,6 @@
-# Prettier
+# ${\color{lightblue}\text{Prettier}}$
 
-## Description
+## ${\color{lightblue}\text{Description}}$
 
 Prettier is an automated code formatting tool for JavaScript, TypeScript, HTML, CSS, JSON, Markdown, and many other file formats commonly used in modern frontend projects.
 
@@ -10,7 +10,7 @@ Prettier focuses on formatting consistency rather than code correctness or code 
 
 Automated formatting helps reduce formatting-related discussions, improves readability consistency across teams and files, and simplifies long-term maintenance.
 
-## Pros
+## ${\color{lightgreen}\text{Pros}}$
 
 - Provides consistent formatting across the entire codebase.
 - Reduces formatting-related inconsistencies between files and contributors.
@@ -22,7 +22,7 @@ Automated formatting helps reduce formatting-related discussions, improves reada
 - Simplifies onboarding and collaboration in larger projects.
 - Widely adopted and actively maintained within the JavaScript ecosystem.
 
-## Cons / Risks
+## ${\color{salmon}\text{Cons / Risks}}$
 
 - May conflict with existing formatting preferences or coding styles.
 - Initial adoption can create very large formatting-related Git diffs.
@@ -31,7 +31,7 @@ Automated formatting helps reduce formatting-related discussions, improves reada
 - Automatic formatting can occasionally reduce readability in edge cases.
 - Existing legacy codebases may require gradual adoption strategies.
 
-## Common Usage
+## ${\color{plum}\text{Common Usage}}$
 
 Prettier is commonly installed as a development dependency and integrated into:
 
@@ -41,7 +41,7 @@ Prettier is commonly installed as a development dependency and integrated into:
 - CI formatting checks.
 - Package.json formatting scripts.
 
-## Useful Links
+## ${\color{lightblue}\text{Useful Links}}$
 
 - Prettier Official Website: https://prettier.io/
 - Prettier Documentation: https://prettier.io/docs/en/
