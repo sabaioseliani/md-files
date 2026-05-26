@@ -1,6 +1,6 @@
 # ${\color{lightblue}\text{Refactoring Infrastructure}}$
 
-[Description](#description) · [Reusable Vue Composables](#reusable-vue-composables) · [Centralized State Management](#centralized-state-management) · [Query-Based Data Management](#query-based-data-management) · [Reusable Infrastructure and Abstractions](#reusable-infrastructure-and-abstractions) · [Component Extraction](#component-extraction) · [Code Generation and Templates](#code-generation-and-templates) · [Storybook and Isolated Component Development](#storybook-and-isolated-component-development) · [JSDoc for Utilities and Composables](#jsdoc-for-utilities-and-composables) · [Project Structure and Architectural Cleanup](#project-structure-and-architectural-cleanup) · [Code Splitting and Lazy Loading](#code-splitting-and-lazy-loading) · [Duplicate Detection and Copy-Paste Analysis](#duplicate-detection-and-copy-paste-analysis) · [Dead Code and Unused Export Detection](#dead-code-and-unused-export-detection) · [Structural Code Search](#structural-code-search) · [Automated Codebase Transformations](#automated-codebase-transformations) · [Vue Hook Optimizer](#vue-hook-optimizer) · [Abracadabra, refactor this!](#abracadabra-refactor-this)· [Path Aliases](#path-aliases) · [Recommended Approach](#recommended-approach) · [Post-Refactoring Verification](#post-refactoring-verification) · [Useful Links](#useful-links)
+[Description](#description) · [Reusable Vue Composables](#reusable-vue-composables) · [Reusable Vue Composables](#reusable-vue-composables) · [Centralized State Management](#centralized-state-management) · [Query-Based Data Management](#query-based-data-management) · [Storybook and Isolated Component Development](#storybook-and-isolated-component-development) · [JSDoc for Utilities and Composables](#jsdoc-for-utilities-and-composables) · [Project Structure and Architectural Cleanup](#project-structure-and-architectural-cleanup) · [Code Splitting and Lazy Loading](#code-splitting-and-lazy-loading) · [Duplicate Detection and Copy-Paste Analysis](#duplicate-detection-and-copy-paste-analysis) · [Dead Code and Unused Export Detection](#dead-code-and-unused-export-detection) · [Structural Code Search](#structural-code-search) · [Automated Codebase Transformations](#automated-codebase-transformations) · [Vue Hook Optimizer](#vue-hook-optimizer) · [Abracadabra, refactor this!](#abracadabra-refactor-this)· [Path Aliases](#path-aliases) · [Recommended Approach](#recommended-approach) · [Post-Refactoring Verification](#post-refactoring-verification) · [Useful Links](#useful-links)
 
 -----
 
@@ -14,24 +14,72 @@ The goal is not to rewrite the application unnecessarily, but to improve the sur
 
 ## ${\color{plum}\text{Reusable Vue Composables}}$ <a id="reusable-vue-composables"></a>
 
-Composable-based architecture helps reduce repeated reactive logic, centralize reusable frontend behavior, coordinate shared workflows, and keep component implementations smaller and easier to reason about as applications grow.
+After duplicated logic has been identified using tools such as `jscpd`, `ast-grep`, or similar structural analysis tooling mentioned elsewhere in this document, repeated patterns can be extracted into either:
 
-This becomes increasingly useful once similar reactive patterns begin appearing repeatedly across multiple parts of the application.
+- Vue composables
+- or plain JavaScript utility functions
+
+depending on what the duplicated code actually requires.
+
+Use a **Vue composable** when the repeated logic depends on:
+
+- Vue reactivity,
+- refs,
+- computed values,
+- watchers,
+- lifecycle hooks,
+- or other Vue-specific orchestration behavior.
 
 ### ${\color{lightgreen}\text{Pros}}$
 
 - Reduces duplicated reactive logic.
-- Improves separation between logic and rendering.
-- Keeps components smaller and easier to maintain.
-- Encourages reusable frontend workflows.
-- Makes repeated behavior easier to standardize.
-- Helps reduce repeated watcher/computed/ref orchestration.
+- Separates reactive orchestration from rendering.
+- Helps standardize repeated Vue workflows.
+- Reduces repeated watcher/computed/ref orchestration.
+- Keeps large components easier to reason about.
 
 ### ${\color{salmon}\text{Cons / Risks}}$
 
 - Overly generic composables can become difficult to understand.
 - Excessive abstraction may reduce readability instead of improving it.
 - Poorly scoped composables can accidentally create tightly coupled logic.
+- Over-fragmentation can create unclear ownership boundaries.
+
+---
+
+## ${\color{plum}\text{Reusable JavaScript Utility Functions}}$ <a id="reusable-javascript-utility-functions"></a>
+
+Use a **JavaScript utility function** when duplicated logic is framework-independent and does not rely on:
+
+- Vue refs,
+- lifecycle hooks,
+- computed values,
+- watchers,
+- or component context.
+
+Utility functions are better suited for:
+
+- pure data transformation,
+- formatting,
+- parsing,
+- calculations,
+- validation,
+- and other reusable framework-independent logic.
+
+### ${\color{lightgreen}\text{Pros}}$
+
+- Keeps framework-independent logic outside of Vue-specific abstractions.
+- Makes reusable logic easier to test.
+- Reduces unnecessary reactive abstraction.
+- Helps separate pure logic from component orchestration.
+- Makes repeated helper logic easier to reuse across the project.
+
+### ${\color{salmon}\text{Cons / Risks}}$
+
+- Utility functions should not secretly depend on Vue-specific behavior.
+- Over-extracting tiny helpers can reduce readability.
+- Poorly organized utility folders can become dumping grounds for unrelated logic.
+- Some utility logic may later require migration into composables if reactivity becomes necessary.
 
 ## ${\color{plum}\text{Centralized State Management}}$ <a id="centralized-state-management"></a>
 
@@ -88,68 +136,7 @@ This becomes especially useful once asynchronous flows repeatedly require post-m
 - Smaller applications may not require dedicated query abstractions.
 - Poor cache invalidation strategies can create stale-state issues.
 
-## ${\color{plum}\text{Reusable Infrastructure and Abstractions}}$ <a id="reusable-infrastructure-and-abstractions"></a>
 
-Repeated implementation patterns often indicate opportunities for reusable infrastructure rather than repeatedly rebuilding similar systems with slightly different implementations.
-
-This can include reusable workflows, configuration-driven systems, repeated interaction patterns, shared rendering logic, reusable asynchronous flows, and common application behaviors.
-
-### ${\color{lightgreen}\text{Pros}}$
-
-- Reduces repeated implementation patterns.
-- Improves consistency across the application.
-- Centralizes repeated logic and workflows.
-- Simplifies future feature development.
-- Makes repeated systems easier to maintain long-term.
-- Helps standardize implementation approaches.
-
-### ${\color{salmon}\text{Cons / Risks}}$
-
-- Over-generalized abstractions can become harder to maintain than direct implementations.
-- Flexible edge cases still require escape hatches.
-- Excessive abstraction layers may reduce code discoverability.
-
-## ${\color{plum}\text{Component Extraction}}$ <a id="component-extraction"></a>
-
-As frontend systems evolve, repeated visual structures and interaction patterns can gradually be consolidated into reusable components with shared behavior and styling conventions.
-
-This improves consistency while reducing duplicated implementation effort.
-
-### ${\color{lightgreen}\text{Pros}}$
-
-- Improves visual consistency.
-- Reduces repeated template code.
-- Centralizes shared UI behavior.
-- Simplifies maintenance of repeated interface patterns.
-- Encourages cleaner separation of responsibilities.
-- Makes repeated interaction patterns easier to standardize.
-
-### ${\color{salmon}\text{Cons / Risks}}$
-
-- Excessive component fragmentation can reduce readability.
-- Components require carefully designed APIs to remain flexible.
-- Deeply nested abstraction layers can become difficult to trace.
-
-## ${\color{plum}\text{Code Generation and Templates}}$ <a id="code-generation-and-templates"></a>
-
-Projects that repeatedly create similar modules, composables, utilities, stores, components, or architectural patterns can benefit from automated code generation and reusable templates.
-
-This helps reduce repetitive setup work while improving implementation consistency across the project.
-
-### ${\color{lightgreen}\text{Pros}}$
-
-- Reduces repetitive boilerplate creation.
-- Improves consistency across generated structures.
-- Speeds up repetitive development workflows.
-- Helps enforce architectural conventions.
-- Reduces copy-paste mistakes.
-- Makes repeated implementation patterns easier to standardize.
-
-### ${\color{salmon}\text{Cons / Risks}}$
-
-- Templates require maintenance as conventions evolve.
-- Poor templates can reproduce poor implementation patterns repeatedly.
-- Excessive generation can encourage unnecessary abstraction.
 
 ## ${\color{plum}\text{Storybook and Isolated Component Development}}$ <a id="storybook-and-isolated-component-development"></a>
 
