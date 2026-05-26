@@ -1,6 +1,6 @@
 # ${\color{lightblue}\text{Refactoring Infrastructure}}$
 
-[Description](#description) · [Reusable Vue Composables](#reusable-vue-composables) · [Reusable Vue Composables](#reusable-vue-composables) · [Centralized State Management](#centralized-state-management) · [Query-Based Data Management](#query-based-data-management) · [Storybook and Isolated Component Development](#storybook-and-isolated-component-development) · [JSDoc for Utilities and Composables](#jsdoc-for-utilities-and-composables) · [Project Structure and Architectural Cleanup](#project-structure-and-architectural-cleanup) · [Code Splitting and Lazy Loading](#code-splitting-and-lazy-loading) · [Duplicate Detection and Copy-Paste Analysis](#duplicate-detection-and-copy-paste-analysis) · [Dead Code and Unused Export Detection](#dead-code-and-unused-export-detection) · [Structural Code Search](#structural-code-search) · [Automated Codebase Transformations](#automated-codebase-transformations) · [Vue Hook Optimizer](#vue-hook-optimizer) · [Abracadabra, refactor this!](#abracadabra-refactor-this)· [Path Aliases](#path-aliases) · [Recommended Approach](#recommended-approach) · [Post-Refactoring Verification](#post-refactoring-verification) · [Useful Links](#useful-links)
+[Description](#description) · [Reusable Vue Composables](#reusable-vue-composables) · [Reusable Vue Composables](#reusable-vue-composables) · [Centralized State Management](#centralized-state-management) · [Query-Based Data Management](#query-based-data-management) · [Storybook and Isolated Component Development](#storybook-and-isolated-component-development) · [JSDoc for Utilities and Composables](#jsdoc-for-utilities-and-composables) · [Code Splitting and Lazy Loading](#code-splitting-and-lazy-loading) · [Duplicate Detection and Copy-Paste Analysis](#duplicate-detection-and-copy-paste-analysis) · [Dead Code and Unused Export Detection](#dead-code-and-unused-export-detection) · [Structural Code Search](#structural-code-search) · [Automated Codebase Transformations](#automated-codebase-transformations) · [Vue Hook Optimizer](#vue-hook-optimizer) · [Abracadabra, refactor this!](#abracadabra-refactor-this)· [Path Aliases](#path-aliases) · [Recommended Approach](#recommended-approach) · [Post-Refactoring Verification](#post-refactoring-verification) · [Useful Links](#useful-links)
 
 -----
 
@@ -177,26 +177,6 @@ JSDoc is especially useful for JavaScript utility functions and Vue composables 
 - Documentation can become outdated if not maintained.
 - Over-documenting obvious behavior reduces usefulness.
 
-## ${\color{plum}\text{Project Structure and Architectural Cleanup}}$ <a id="project-structure-and-architectural-cleanup"></a>
-
-As projects evolve, routes, folders, modules, naming conventions, and architectural boundaries may gradually drift away from how the application is conceptually organized.
-
-Refactoring structural organization helps restore consistency between architecture, workflows, and implementation patterns.
-
-### ${\color{lightgreen}\text{Pros}}$
-
-- Improves architectural clarity.
-- Simplifies project navigation.
-- Better separates responsibilities between modules.
-- Reduces structural inconsistencies over time.
-- Improves long-term maintainability.
-- Makes application boundaries easier to reason about.
-
-### ${\color{salmon}\text{Cons / Risks}}$
-
-- Structural refactors can affect imports, routing, and deployment assumptions.
-- Existing integrations may require careful migration.
-- Large structural changes may temporarily reduce development velocity.
 
 ## ${\color{plum}\text{Code Splitting and Lazy Loading}}$ <a id="code-splitting-and-lazy-loading"></a>
 
