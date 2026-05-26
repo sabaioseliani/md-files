@@ -1,6 +1,6 @@
 # ${\color{lightblue}\text{Refactoring Infrastructure}}$
 
-[Description](#description) · [Reusable Vue Composables](#reusable-vue-composables) · [Centralized State Management](#centralized-state-management) · [Query-Based Data Management](#query-based-data-management) · [Reusable Infrastructure and Abstractions](#reusable-infrastructure-and-abstractions) · [Component Extraction](#component-extraction) · [Code Generation and Templates](#code-generation-and-templates) · [Storybook and Isolated Component Development](#storybook-and-isolated-component-development) · [JSDoc for Utilities and Composables](#jsdoc-for-utilities-and-composables) · [Project Structure and Architectural Cleanup](#project-structure-and-architectural-cleanup) · [Code Splitting and Lazy Loading](#code-splitting-and-lazy-loading) · [Duplicate Detection and Copy-Paste Analysis](#duplicate-detection-and-copy-paste-analysis) · [Dead Code and Unused Export Detection](#dead-code-and-unused-export-detection) · [Structural Code Search](#structural-code-search) · [Automated Codebase Transformations](#automated-codebase-transformations) · [Path Aliases](#path-aliases) · [Recommended Approach](#recommended-approach) · [Post-Refactoring Verification](#post-refactoring-verification) · [Useful Links](#useful-links)
+[Description](#description) · [Reusable Vue Composables](#reusable-vue-composables) · [Centralized State Management](#centralized-state-management) · [Query-Based Data Management](#query-based-data-management) · [Reusable Infrastructure and Abstractions](#reusable-infrastructure-and-abstractions) · [Component Extraction](#component-extraction) · [Code Generation and Templates](#code-generation-and-templates) · [Storybook and Isolated Component Development](#storybook-and-isolated-component-development) · [JSDoc for Utilities and Composables](#jsdoc-for-utilities-and-composables) · [Project Structure and Architectural Cleanup](#project-structure-and-architectural-cleanup) · [Code Splitting and Lazy Loading](#code-splitting-and-lazy-loading) · [Duplicate Detection and Copy-Paste Analysis](#duplicate-detection-and-copy-paste-analysis) · [Dead Code and Unused Export Detection](#dead-code-and-unused-export-detection) · [Structural Code Search](#structural-code-search) · [Automated Codebase Transformations](#automated-codebase-transformations) · [Vue Hook Optimizer](#vue-hook-optimizer) · [Abracadabra, refactor this!](#abracadabra-refactor-this)· [Path Aliases](#path-aliases) · [Recommended Approach](#recommended-approach) · [Post-Refactoring Verification](#post-refactoring-verification) · [Useful Links](#useful-links)
 
 -----
 
@@ -399,6 +399,78 @@ Codemods are especially powerful when combined with ast-grep — use ast-grep to
 - Incorrectly written transforms can silently produce malformed output.
 - Transforms must be tested on a small subset of files before running across the entire project.
 - Higher upfront investment than manual editing for simple one-off changes.
+-----
+
+## ${\color{plum}\text{Vue Hook Optimizer}}$ <a id="vue-hook-optimizer"></a>
+
+As Vue components grow in complexity, `<script setup>` blocks can accumulate dozens of refs, computed properties, watchers, and methods whose interdependencies become difficult to reason about. Without a structural overview, it is hard to know which variables are isolated, which methods are over-associated with too many other nodes, or which logic groups belong together in a separate composable.
+
+**vue-hook-optimizer** analyzes a Vue or React component and generates a dependency graph showing the relationships between all variables and methods declared in the component. It surfaces isolated nodes, over-connected nodes, and logical clusters — giving a data-driven basis for deciding what to extract into composables and where component boundaries should be drawn.
+
+It is available as a web playground, a VS Code extension (`vue-hook-optimizer-ext`), and a programmatic npm package.
+
+```bash
+# VS Code extension
+# Search "vue-hook-optimizer-ext" in the Extensions panel
+
+# Or use the online playground
+# https://vue-hook-optimizer.vercel.app/
+```
+
+Paste a component into the playground or open it in VS Code — the tool renders a visual graph of variable/method relationships and highlights optimization suggestions directly.
+
+### ${\color{lightgreen}\text{Pros}}$
+
+- Makes hidden dependency structure inside large components immediately visible.
+- Identifies isolated variables that are candidates for removal or simplification.
+- Identifies over-associated methods that are doing too much and should be split.
+- Highlights logical clusters that belong together in a dedicated composable.
+- Available as a VS Code extension for in-editor analysis without leaving the workflow.
+- Works with both Composition API and Options API.
+- Zero configuration — paste code into the playground or open a file in VS Code.
+- Complements jscpd by showing *structural* complexity rather than only duplication.
+
+### ${\color{salmon}\text{Cons / Risks}}$
+
+- Primarily a visualization and suggestion tool — does not automate any transformations.
+- Graph can become visually dense in very large components, reducing readability.
+- React support exists but the tool is primarily oriented toward Vue components.
+- VS Code extension is a side project and may lag behind Vue version changes.
+
+-----
+
+## ${\color{plum}\text{Abracadabra, refactor this!}}$ <a id="abracadabra-refactor-this"></a>
+
+Even once duplication is mapped and extraction targets are identified, the mechanical work of extracting a variable, inlining a redundant expression, flipping a condition, or renaming a symbol across files still requires precise cursor placement and manual editing. This slows down refactoring sessions and introduces opportunities for small mistakes.
+
+**Abracadabra** is a VS Code extension that provides 40+ automated refactorings for JavaScript and TypeScript, triggered from the cursor position rather than requiring exact text selection. Refactorings are available through keyboard shortcuts, the Command Palette, or VS Code Quick Fix lightbulbs — whichever fits the flow.
+
+Notable refactorings include: Extract Variable, Inline Variable, Extract Function, Rename Symbol, Flip If/Else, Remove Dead Code, Simplify Ternary, Convert to Template Literal, Move Statement Up/Down, and more. The full catalog is listed in the repository.
+
+```bash
+# Install from the VS Code Extensions panel
+# Search: "Abracadabra, refactor this!"
+
+# Or install from the Marketplace:
+# https://marketplace.visualstudio.com/items?itemName=nicoespeon.abracadabra
+```
+
+### ${\color{lightgreen}\text{Pros}}$
+
+- Cursor-aware — triggers refactorings without needing a precise text selection.
+- 40+ refactorings available covering the most common day-to-day operations.
+- Accessible via shortcuts, Command Palette, or Quick Fix lightbulb — no fixed UX.
+- Works with JS, TS, JSX, and TSX; also handles `.vue` files within `<script>` blocks.
+- Reduces mechanical effort and small mistakes during active refactoring sessions.
+- Quick Fixes can be selectively disabled for operations that are not used.
+- Complements jscodeshift for one-off, in-editor transformations that do not need a full codemod.
+
+### ${\color{salmon}\text{Cons / Risks}}$
+
+- Limited to JS and TS — no template-level refactorings for Vue SFC `<template>` blocks.
+- A side project; some edge cases and advanced patterns may not be covered.
+- Does not replace jscodeshift for bulk automated transformations across many files.
+- Rename Symbol support in `.vue` files is limited to the `<script>` tag only.
 
 -----
 
@@ -516,5 +588,22 @@ Configuring a `@/` path alias in `vite.config.js` or `vue.config.js` replaces re
 
 - [jscodeshift GitHub](https://github.com/facebook/jscodeshift)
 - [jscodeshift Codemods Collection](https://github.com/codemod-com/codemod-registry)
+
+</details>
+<details>
+<summary>📎 Vue Hook Optimizer</summary>
+
+- [vue-hook-optimizer GitHub](https://github.com/zcf0508/vue-hook-optimizer)
+- [vue-hook-optimizer Playground](https://vue-hook-optimizer.vercel.app/)
+- [vue-hook-optimizer VS Code Extension](https://marketplace.visualstudio.com/items?itemName=zcf0508.vue-hook-optimizer-ext)
+
+</details>
+
+<details>
+<summary>📎 Abracadabra</summary>
+
+- [Abracadabra GitHub](https://github.com/nicoespeon/abracadabra)
+- [Abracadabra VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=nicoespeon.abracadabra)
+- [Abracadabra Full Refactorings Catalog](https://github.com/nicoespeon/abracadabra/blob/main/REFACTORINGS.md)
 
 </details>
