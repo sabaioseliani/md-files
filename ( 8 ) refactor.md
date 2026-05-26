@@ -279,7 +279,7 @@ npx jscpd src/ --ignore "src/vendor/**" --reporters html --output report/
 
 ## ${\color{plum}\text{Dead Code and Unused Export Detection}}$ <a id="dead-code-and-unused-export-detection"></a>
 
-In large projects with years of accumulated copy-paste patterns, not all duplicated code is even actively used. Dead files, unused exports, and unimported utilities add to the apparent complexity of the codebase and make it harder to reason about what actually matters.
+In large projects with years of accumulated development, not all code is actively used. Dead files, unused exports, and unlisted dependencies add to the apparent complexity of the codebase and make it harder to reason about what actually matters.
 
 Removing dead code before refactoring reduces the surface area that needs to be understood and extracted, and prevents wasted effort on consolidating logic that nothing depends on.
 
@@ -293,31 +293,19 @@ npx knip
 
 Knip produces a structured report grouping issues by category — unused files, unused exports, unlisted dependencies — making it straightforward to decide what to delete before beginning extraction work.
 
-### unimported
-
-**unimported** is a focused alternative that specifically identifies files that are never imported anywhere in the project. It is simpler than Knip and faster to run, but covers a narrower scope.
-
-```bash
-npx unimported
-```
-
-Useful as a quick first pass to identify entirely orphaned files before running a more comprehensive Knip analysis.
-
 ### ${\color{lightgreen}\text{Pros}}$
 
-- Reduces refactoring surface area by removing code that doesn’t need to be touched at all.
+- Reduces refactoring surface area by removing code that doesn't need to be touched at all.
 - Prevents wasted effort consolidating logic that nothing actually uses.
 - Identifies orphaned files that have been forgotten and accumulate silently over time.
 - Helps shrink bundle size as a side effect of removal.
-- Knip covers unused exports, files, and dependencies in a single report.
-- unimported is fast and zero-config for a quick initial pass.
+- Covers unused exports, files, and dependencies in a single report.
 
 ### ${\color{salmon}\text{Cons / Risks}}$
 
 - Dynamic imports and runtime-constructed module paths can produce false positives.
 - Requires verification before deletion — not all flagged exports are necessarily safe to remove.
 - Entry points and externally consumed exports need to be configured to avoid incorrect reports.
-
 -----
 
 ## ${\color{plum}\text{Structural Code Search}}$ <a id="structural-code-search"></a>
@@ -485,7 +473,7 @@ Configuring a `@/` path alias in `vite.config.js` or `vue.config.js` replaces re
 - Prioritize reducing repeated infrastructure before rewriting major features.
 - Start with the most duplicated logic and architectural patterns first.
 - Run **jscpd** once at the start to produce a full duplication map and prioritize extraction targets.
-- Run **Knip** or **unimported** to remove dead code before beginning extraction work.
+- Run **Knip** to remove dead code before beginning extraction work.
 - Use **ast-grep** to find every usage of a pattern before extracting it, so no replacements are missed.
 - Use **jscodeshift** to automate bulk replacements after extraction rather than updating files manually.
 - Prefer incremental refactoring over full rewrites whenever possible.
@@ -537,14 +525,6 @@ Configuring a `@/` path alias in `vite.config.js` or `vue.config.js` replaces re
 </details>
 
 <details>
-<summary>📎 Code Generation</summary>
-
-- [Hygen GitHub](https://github.com/jondot/hygen)
-- [Hygen Documentation](https://www.hygen.io/)
-
-</details>
-
-<details>
 <summary>📎 Component Documentation</summary>
 
 - [Storybook Documentation](https://storybook.js.org/docs)
@@ -571,7 +551,6 @@ Configuring a `@/` path alias in `vite.config.js` or `vue.config.js` replaces re
 
 - [Knip GitHub](https://github.com/webpro/knip)
 - [Knip Documentation](https://knip.dev/)
-- [unimported GitHub](https://github.com/smeijer/unimported)
 
 </details>
 
