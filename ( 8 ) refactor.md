@@ -436,7 +436,7 @@ Paste a component into the playground or open it in VS Code — the tool renders
 - Graph can become visually dense in very large components, reducing readability.
 - React support exists but the tool is primarily oriented toward Vue components.
 - VS Code extension is a side project and may lag behind Vue version changes.
-
+- Relatively niche adoption — low VS Code extension install count and a small community, so long-term maintenance is uncertain.
 -----
 
 ## ${\color{plum}\text{Abracadabra, refactor this!}}$ <a id="abracadabra-refactor-this"></a>
