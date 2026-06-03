@@ -1,5 +1,5 @@
 // eslint.config.js
-import { globalIgnores } from "eslint/config";
+import { defineConfig, globalIgnores } from "eslint/config";
 import js from "@eslint/js";
 import pluginVue from "eslint-plugin-vue";
 import configPrettier from "eslint-config-prettier";
@@ -8,7 +8,7 @@ import process from "node:process";
 
 const isProd = process.env.NODE_ENV === "production";
 
-export default [
+export default defineConfig([
   // ─── Ignored paths ────────────────────────────────────────────────────────
   globalIgnores(["**/dist/**", "**/dist-ssr/**", "**/coverage/**"]),
 
@@ -109,8 +109,7 @@ export default [
       // `!!` is allowed as it's an accepted idiom for boolean conversion.
 
       "no-lonely-if": "error",
-      // Disallows an `if` as the only statement inside an `else` block;
-      // use `else if` instead.
+      // Disallows an `if` as the only statement inside an `else` block; use `else if` instead.
 
       "no-unreachable": "error",
       // Disallows code after `return`, `throw`, `break`, or `continue` statements.
@@ -144,7 +143,6 @@ export default [
     name: "app/vue-rules",
     files: ["**/*.vue"],
     rules: {
-
       // ── Priority A: Essential (prevent bugs / broken behavior) ─────────────
 
       "vue/no-mutating-props": "error",
@@ -242,7 +240,7 @@ export default [
       // Disallows incorrect usages of `nextTick` (e.g. not awaiting it or not using a callback).
 
       "vue/valid-template-root": "error",
-      // Requires the template to have exactly one root element (for Vue 2),
+      // Requires the template to have exactly one root element (Vue 2),
       // or disallows invalid root nodes.
 
       "vue/valid-v-bind": "error",
@@ -401,8 +399,7 @@ export default [
       // Enforces a consistent block order inside `.vue` files.
 
       "vue/no-lone-template": "error",
-      // Disallows a `<template>` without `v-if`, `v-else`, `v-slot`, or `v-for`,
-      // since a bare `<template>` wrapper is useless.
+      // Disallows a bare `<template>` wrapper with no directive, since it has no effect.
 
       "vue/no-multiple-slot-args": "error",
       // Disallows passing more than one argument to a scoped slot (use an object instead).
@@ -420,8 +417,7 @@ export default [
       // ── Uncategorized / optional but useful ────────────────────────────────
 
       "vue/multi-word-component-names": "off",
-      // Off intentionally: requiring multi-word component names is often impractical
-      // for small projects. Turn on if you want to enforce the Vue style guide strictly.
+      // Off intentionally: not everything can or should be a multi-word name.
 
       "vue/html-button-has-type": "error",
       // Requires all `<button>` elements to have an explicit `type` attribute,
@@ -439,8 +435,7 @@ export default [
       // such as destructuring props directly.
 
       "vue/no-template-target-blank": "error",
-      // Disallows `target="_blank"` on `<a>` elements without `rel="noopener noreferrer"`,
-      // which is a security vulnerability (tab-napping).
+      // Disallows `target="_blank"` without `rel="noopener noreferrer"` — a tab-napping risk.
 
       "vue/no-unused-emit-declarations": "warn",
       // Warns on events declared in `emits` or `defineEmits` that are never actually emitted.
@@ -455,8 +450,8 @@ export default [
       // Warns on `:foo="'literal'"` v-bind expressions that could just be static attributes.
 
       "vue/prefer-define-options": "warn",
-      // Prefers `defineOptions()` over the separate `export default { name, inheritAttrs }`
-      // workaround in `<script setup>` files.
+      // Prefers `defineOptions()` over the `export default { name, inheritAttrs }` workaround
+      // in `<script setup>` files.
 
       "vue/prefer-true-attribute-shorthand": "warn",
       // Enforces `:foo` shorthand over `:foo="true"` for boolean props.
@@ -478,6 +473,6 @@ export default [
     },
   },
 
-  // ─── Prettier (disables formatting rules — always last) ───────────────────
+  // ─── Prettier (disables conflicting ESLint formatting rules — always last) ─
   configPrettier,
-];
+]);
