@@ -1,6 +1,6 @@
 # ${\color{lightblue}\text{SonarJS}}$
 
-[ESLint Plugin](#eslint-plugin) · [VS Code Extension](#vs-code-extension) · [Standalone Library](#standalone-library)
+[ESLint Plugin](#eslint-plugin) · [VS Code Extension](#vs-code-extension) · [Standalone Library](#standalone-library) · [What SonarJS Catches Best](#sonarjs-catches) · [Overlap vs. Added Value](#overlap-analysis)
 
 ---
 
@@ -123,5 +123,194 @@ Most frontend projects will typically use the ESLint plugin instead of interacti
 * https://rules.sonarsource.com/javascript/
 
 </details>
+
+---
+
+# ${\color{lightblue}\text{What SonarJS Catches Best}}$ <a id="sonarjs-catches"></a>
+
+These are patterns SonarJS is specifically built to detect that standard ESLint (`js.configs.recommended`), `eslint-plugin-vue`, and Prettier will not flag.
+
+---
+
+### Duplicated branches
+
+Every branch does the same thing. ESLint passes this silently.
+
+```js
+// ❌ sonarjs/no-all-duplicated-branches
+function getLabel(status) {
+  if (status === 'active') {
+    return 'Active';
+  } else {
+    return 'Active'; // identical — unreachable distinct logic
+  }
+}
+```
+
+---
+
+### Identical expressions on both sides of an operator
+
+```js
+// ❌ sonarjs/no-identical-expressions
+if (user.role === user.role) { // always true
+  doSomething();
+}
+
+const result = value || value; // redundant
+```
+
+---
+
+### Ignored return values
+
+Common in Vue components where array methods are called but the result is discarded.
+
+```js
+// ❌ sonarjs/no-ignored-return
+const items = ['a', 'b', 'c'];
+items.filter(i => i !== 'a'); // return value never used — likely a bug
+items.map(i => i.toUpperCase()); // same
+```
+
+---
+
+### Cognitive complexity
+
+A function that technically lints fine but is deeply nested and hard to maintain.
+
+```js
+// ❌ sonarjs/cognitive-complexity (exceeds threshold)
+function process(data) {
+  if (data) {
+    for (const item of data) {
+      if (item.active) {
+        if (item.type === 'A') {
+          if (item.value > 0) {
+            return item.value * 2;
+          }
+        } else if (item.type === 'B') {
+          if (item.value < 0) {
+            return item.value * -1;
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+---
+
+### Collapsible nested ifs
+
+```js
+// ❌ sonarjs/no-collapsible-if
+if (isLoggedIn) {
+  if (hasPermission) { // these two can be &&-collapsed
+    proceed();
+  }
+}
+```
+
+---
+
+### Redundant boolean patterns
+
+```js
+// ❌ sonarjs/no-redundant-boolean
+const isValid = value !== null ? true : false; // just: Boolean(value)
+
+// ❌ sonarjs/prefer-single-boolean-return
+function check(x) {
+  if (x > 0) {
+    return true;
+  } else {
+    return false; // just: return x > 0
+  }
+}
+```
+
+---
+
+# ${\color{lightblue}\text{Overlap vs. Added Value}}$ <a id="overlap-analysis"></a>
+
+
+---
+
+### Where SonarJS adds nothing
+
+**Prettier** owns all formatting. SonarJS has zero formatting rules — no conflict, no overlap.
+
+**`js.configs.recommended`** already covers basic correctness errors:
+
+```js
+// Already caught — no added value from SonarJS here
+const x = undeclaredVariable; // no-undef
+if (true) { }                 // no-constant-condition
+var a = a;                    // no-self-assign
+```
+
+---
+
+### Where SonarJS genuinely adds coverage
+
+These patterns pass `js.configs.recommended` and `eslint-plugin-vue` cleanly but are caught by SonarJS:
+
+```js
+// ✅ passes js.configs.recommended — ❌ caught by sonarjs/no-ignored-return
+items.map(i => transform(i));
+
+// ✅ passes js.configs.recommended — ❌ caught by sonarjs/no-all-duplicated-branches
+if (flag) { return 'x'; } else { return 'x'; }
+
+// ✅ passes js.configs.recommended — ❌ caught by sonarjs/cognitive-complexity
+function deeply() { if(a){if(b){if(c){if(d){ return 1; }}}} }
+
+// ✅ passes js.configs.recommended — ❌ caught by sonarjs/no-identical-expressions
+const y = someValue && someValue;
+```
+
+---
+
+### Where overlap is real but tolerable
+
+Without `@typescript-eslint` rule collision is minimal. What does exist is narrow:
+
+| Pattern | Covered by | SonarJS equivalent |
+|---|---|---|
+| Unused variables | `js.configs.recommended` (`no-unused-vars`) | Not duplicated |
+| Unreachable code | `js.configs.recommended` (`no-unreachable`) | `sonarjs/no-unreachable` — minor overlap |
+| Self-comparison | `js.configs.recommended` (`no-self-compare`) | `sonarjs/no-identical-expressions` — partial overlap |
+
+The overlap is narrow enough that duplicate warnings in practice would be rare.
+
+---
+
+### Verdict for your setup
+
+without the use of `@typescript-eslint` (the main source of SonarJS overlap), the ESLint plugin adds genuine non-redundant coverage — particularly `cognitive-complexity`, `no-ignored-return`, `no-all-duplicated-branches`, and `no-identical-expressions`. These are the rules most likely to surface real issues in a legacy Vue codebase.
+
+Recommended starting config — use `warn` instead of the full `sonarjs.configs.recommended` to avoid a flood of errors on existing legacy files:
+
+```js
+// eslint.config.js
+import { defineConfig } from 'eslint/config';
+import sonarjs from 'eslint-plugin-sonarjs';
+
+export default defineConfig([
+  // ... your existing config entries
+  {
+    plugins: { sonarjs },
+    rules: {
+      'sonarjs/cognitive-complexity': ['warn', 15],
+      'sonarjs/no-all-duplicated-branches': 'warn',
+      'sonarjs/no-ignored-return': 'warn',
+      'sonarjs/no-identical-expressions': 'warn',
+      'sonarjs/no-collapsible-if': 'warn',
+    },
+  },
+]);
+```
 
 ---
