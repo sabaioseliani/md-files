@@ -1,216 +1,127 @@
-````md id="sonarjs"
+# ${\color{lightblue}\text{SonarJS}}$
 
-# ${\color{gold}\text{SonarJS}}$
-
-[Overview](#overview) •
-[ESLint Plugin](#eslint-plugin) •
-[VS Code Extension](#vs-code-extension-extension) •
-[Standalone Library](#standalone-library) •
-[Tool Overlap](#tool-overlap) •
-[Recommendation](#recommendation) •
-[References](#references)
+[ESLint Plugin](#eslint-plugin) · [VS Code Extension](#vs-code-extension) · [Standalone Library](#standalone-library)
 
 ---
 
-## ${\color{cyan}\text{Overview}}$
+# ${\color{lightblue}\text{ESLint Plugin}}$ <a id="eslint-plugin"></a>
 
-SonarJS is a static analysis engine developed by SonarSource for JavaScript and TypeScript.
+## ${\color{lightblue}\text{Description}}$
 
-Unlike traditional linting tools that primarily focus on syntax, style, and common mistakes, SonarJS focuses on:
+`eslint-plugin-sonarjs` integrates SonarSource's JavaScript and TypeScript static analysis rules directly into ESLint.
 
-- Code smells
-- Logic bugs
-- Security vulnerabilities
-- Maintainability issues
-- Cognitive complexity
+It focuses on identifying code smells, maintainability issues, cognitive complexity, logic bugs, duplicated branches, suspicious expressions, and various security-related patterns that are often not covered by standard ESLint configurations.
 
-It can be used locally through:
+As of v2.x, the plugin ships with the full SonarJS rule set and supports modern ESLint Flat Config setups.
 
-1. ESLint Plugin
-2. VS Code Extension (SonarQube for IDE)
-3. Standalone NPM Library
+It is generally the most practical way to use SonarJS within modern Vue, React, Next.js, and TypeScript projects.
 
-No SonarQube Server or SonarCloud account is required for local usage.
+## ${\color{lightgreen}\text{Pros}}$
 
----
+* Integrates directly into existing ESLint workflows.
+* Works with ESLint v8 and v9.
+* Fully local analysis.
+* Strong support for JavaScript and TypeScript.
+* Detects cognitive complexity issues.
+* Detects duplicated branches and suspicious logic.
+* Works alongside Vue and TypeScript ESLint plugins.
+* Easy adoption through recommended configurations.
 
-## ${\color{plum}\text{ESLint Plugin}}$
+## ${\color{salmon}\text{Cons}}$
 
-### Description
+* Can generate a large number of warnings on legacy codebases.
+* Some overlap exists with TypeScript ESLint rules.
+* Recommended configuration may feel aggressive initially.
+* v2 introduced many additional rules compared to earlier releases.
+* May require rule tuning to reduce noise.
 
-`eslint-plugin-sonarjs` integrates SonarJS rules directly into your existing ESLint configuration.
-
-Recommended for most Vue, React, Next.js, and TypeScript projects.
-
-### Useful For
-
-- Legacy codebases
-- Large frontend applications
-- Reducing technical debt
-- Detecting logic mistakes
-- Enforcing maintainability standards
-
-### ${\color{lightgreen}\text{Pros}}$
-
-✅ Works directly inside ESLint
-
-✅ Fully local
-
-✅ Flat-config compatible
-
-✅ Vue + TypeScript support
-
-✅ Easy installation
-
-### ${\color{salmon}\text{Cons / Risks}}$
-
-⚠ Large rule set may generate significant noise initially
-
-⚠ Some overlap with `@typescript-eslint`
-
-⚠ Recommended preset can be aggressive on older projects
-
-### Setup
-
-```bash
-npm install eslint-plugin-sonarjs --save-dev
-````
-
-```js
-import sonarjs from 'eslint-plugin-sonarjs';
-
-export default [
-  sonarjs.configs.recommended
-];
-```
-
----
-
-## ${\color{plum}\text{VS Code Extension}}$
-
-### Description
-
-Formerly SonarLint.
-
-Now known as SonarQube for IDE.
-
-Provides real-time analysis directly inside VS Code.
-
-### Useful For
-
-* Instant feedback
-* Editor diagnostics
-* Developer onboarding
-* Learning Sonar rules
-
-### ${\color{lightgreen}\text{Pros}}$
-
-✅ Issues appear while typing
-
-✅ No server required
-
-✅ Detailed explanations
-
-✅ Security analysis
-
-✅ Free
-
-### ${\color{salmon}\text{Cons / Risks}}$
-
-⚠ Requires Java Runtime (JRE)
-
-⚠ Heavier than ESLint-only setups
-
-⚠ Separate configuration system
-
-⚠ Telemetry enabled by default
-
----
-
-## ${\color{plum}\text{Standalone Library}}$
-
-### Description
-
-The underlying SonarJS analyzer used by both the ESLint plugin and VS Code extension.
-
-Intended primarily for:
-
-* Custom tooling
-* CI integrations
-* Internal platforms
-* AST-based workflows
-
-### ${\color{lightgreen}\text{Pros}}$
-
-✅ Full analyzer access
-
-✅ Maximum flexibility
-
-### ${\color{salmon}\text{Cons / Risks}}$
-
-⚠ Manual integration required
-
-⚠ Limited practical value for typical frontend projects
-
-⚠ Sparse documentation
-
----
-
-## ${\color{orange}\text{Tool Overlap}}$
-
-| Concern        | Existing Tool     | SonarJS         |
-| -------------- | ----------------- | --------------- |
-| Formatting     | Prettier          | No overlap      |
-| Type Safety    | TypeScript ESLint | Partial overlap |
-| Vue Rules      | eslint-plugin-vue | No overlap      |
-| Duplicate Code | jscpd             | Partial overlap |
-| Dead Code      | Knip              | No overlap      |
-
-### Where SonarJS Adds Value
-
-* Cognitive Complexity
-* Identical Expressions
-* Duplicate Branch Detection
-* Ignored Return Values
-* Security Rules
-
----
-
-## ${\color{yellow}\text{Recommendation}}$
-
-For a Vue + TypeScript legacy codebase:
-
-1. Install `eslint-plugin-sonarjs`
-2. Start with selected rules
-3. Use warnings initially
-4. Evaluate noise level
-5. Gradually increase enforcement
-
-Recommended starter rules:
-
-```js
-{
-  'sonarjs/cognitive-complexity': ['warn', 15],
-  'sonarjs/no-all-duplicated-branches': 'warn',
-  'sonarjs/no-identical-expressions': 'warn',
-  'sonarjs/no-ignored-return': 'warn'
-}
-```
-
----
-
-## ${\color{skyblue}\text{References}}$
+## ${\color{lightblue}\text{Useful Links}}$ <a id="eslint-plugin-links"></a>
 
 <details>
-<summary>Documentation & External Resources</summary>
+<summary>📎 Click to expand links</summary>
 
-* SonarJS NPM Package
-* SonarJS GitHub Repository
-* SonarQube for IDE
-* Sonar Rule Catalog
-* SonarSource Documentation
+* https://www.npmjs.com/package/eslint-plugin-sonarjs
+* https://github.com/SonarSource/SonarJS
 
 </details>
 
-```
-```
+---
+
+# ${\color{lightblue}\text{VS Code Extension}}$ <a id="vs-code-extension"></a>
+
+## ${\color{lightblue}\text{Description}}$
+
+The SonarQube for IDE extension (formerly SonarLint) provides real-time code analysis directly inside Visual Studio Code.
+
+Issues are displayed while writing code through editor diagnostics and the Problems panel.
+
+The extension runs SonarJS analysis locally and can operate completely offline without requiring a SonarQube server or SonarCloud account.
+
+It supports JavaScript, TypeScript, Vue, Python, Java, C#, PHP, CSS, and additional languages.
+
+## ${\color{lightgreen}\text{Pros}}$
+
+* Real-time feedback while coding.
+* No manual lint execution required.
+* Detailed explanations for detected issues.
+* Supports multiple programming languages.
+* Can run entirely locally.
+* Free to use.
+* Helpful for learning Sonar rules and best practices.
+
+## ${\color{salmon}\text{Cons}}$
+
+* Requires a Java Runtime Environment (JRE).
+* Heavier than a simple ESLint extension.
+* Uses a separate configuration system from ESLint.
+* Telemetry is enabled by default.
+* Can feel redundant if ESLint already runs inside the editor.
+
+## ${\color{lightblue}\text{Useful Links}}$ <a id="vs-code-extension-links"></a>
+
+<details>
+<summary>📎 Click to expand links</summary>
+
+* https://marketplace.visualstudio.com/items?itemName=SonarSource.sonarlint-vscode
+* https://github.com/SonarSource/sonarlint-vscode
+* https://docs.sonarsource.com/sonarqube-for-ide/vs-code/
+
+</details>
+
+---
+
+# ${\color{lightblue}\text{Standalone Library}}$ <a id="standalone-library"></a>
+
+## ${\color{lightblue}\text{Description}}$
+
+The `sonarjs` package contains the underlying analysis engine used by both the ESLint plugin and the VS Code extension.
+
+Direct usage is primarily intended for custom tooling, internal developer platforms, CI integrations, and advanced static analysis workflows.
+
+Most frontend projects will typically use the ESLint plugin instead of interacting with the library directly.
+
+## ${\color{lightgreen}\text{Pros}}$
+
+* Direct access to the SonarJS analyzer.
+* Useful for custom tooling development.
+* Can be integrated into specialized CI workflows.
+* Does not require ESLint.
+
+## ${\color{salmon}\text{Cons}}$
+
+* Requires manual integration work.
+* Not intended for typical frontend projects.
+* Sparse documentation compared to plugin usage.
+* Significantly more complex than the ESLint integration.
+
+## ${\color{lightblue}\text{Useful Links}}$ <a id="standalone-library-links"></a>
+
+<details>
+<summary>📎 Click to expand links</summary>
+
+* https://github.com/SonarSource/SonarJS
+* https://rules.sonarsource.com/javascript/
+
+</details>
+
+---
