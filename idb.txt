@@ -1,0 +1,65 @@
+import { openDB } from 'idb'
+
+const DB_NAME = 'webname'
+const DB_VERSION = 1
+const STORE_NAME = 'storename'
+
+let dbPromise = openDB(DB_NAME, DB_VERSION, {
+  upgrade(db) {
+    if (!db.objectStoreNames.contains(STORE_NAME)) {
+      db.createObjectStore(STORE_NAME, {
+        keyPath: 'id',
+        autoIncrement: true,
+      })
+    }
+  },
+})
+
+export const db = {
+  async read() {
+    const db = await dbPromise
+    return await db.getAll(STORE_NAME)
+  },
+
+  async add(item) {
+    const db = await dbPromise
+
+    return await db.add(STORE_NAME, {
+      ...item,
+    })
+  },
+
+  async deleteAll() {
+    const db = await dbPromise
+    await db.clear(STORE_NAME)
+  },
+
+
+}
+
+
+compnent script setup
+
+<script setup>
+import { ref, onMounted } from 'vue'
+import { db } from '@/idb'
+
+const list = ref([])
+
+onMounted(async () => {
+  list.value = await db.read()
+})
+
+const addItems = async () => {
+  await db.add({
+    item: '12',
+  })
+
+  list.value = await db.read()
+}
+
+const deleteItems = async () => {
+  await db.deleteAll()
+  list.value = []
+}
+</script>
