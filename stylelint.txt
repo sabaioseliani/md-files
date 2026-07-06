@@ -1,0 +1,26 @@
+/**
+ * Stylelint Configuration
+ *
+ * Required npm packages to install:
+ * - stylelint (^16.3.1) - CSS/SCSS linter
+ * - postcss-html (^1.8.1) - PostCSS parser for HTML
+ * - postcss-scss (^4.0.9) - PostCSS parser for SCSS
+ * - sass-embedded (^1.100.0) - Sass compiler
+ *
+ * Install with: npm install --save-dev stylelint postcss-html postcss-scss
+ * And: npm install sass-embedded
+ */
+
+export default {
+  customSyntax: "postcss-html",
+  overrides: [
+    {
+      files: ["**/*.scss"],
+      customSyntax: "postcss-scss",
+    },
+  ],
+  rules: {
+    "no-duplicate-selectors": true,
+    "declaration-block-no-duplicate-properties": true,
+  },
+};
