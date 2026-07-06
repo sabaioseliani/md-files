@@ -1,0 +1,241 @@
+{
+  name: "projectName/sonar",
+  plugins: {
+    sonarjs,
+  },
+
+  rules: {
+    // ─── Bug Detection ────────────────────────────────────────────────
+
+    // Cognitive Complexity of functions should not be too high
+    // "sonarjs/cognitive-complexity": ["error", 15],
+
+    // Two branches in a conditional structure should not have exactly the same implementation
+    // "sonarjs/no-all-duplicated-branches": "error",
+
+    // Collection sizes and array length comparisons should make sense (e.g. length < 0)
+    // "sonarjs/no-collection-size-mischeck": "error",
+
+    // A conditional structure should not have entirely duplicated branches
+    // "sonarjs/no-duplicated-branches": "error",
+
+    // An "if" statement should not overwrite an assignment made just before (element overwrite)
+    // "sonarjs/no-element-overwrite": "error",
+
+    // Function calls should not pass extra arguments
+    // "sonarjs/no-extra-arguments": "error",
+
+    // Related "if/else if" conditions should not have the same condition twice
+    // "sonarjs/no-identical-conditions": "error",
+
+    // Identical expressions should not be used on both sides of a binary operator
+    // "sonarjs/no-identical-expressions": "error",
+
+    // Two functions should not have the exact same implementation (copy-paste smell)
+    // "sonarjs/no-identical-functions": "error",
+
+    // The output of functions that don't return anything should not be used
+    // "sonarjs/no-ignored-return": "error",
+
+    // Loops with at most one iteration should be refactored (dead loop logic)
+    // "sonarjs/no-one-iteration-loop": "error",
+
+    // Jump statements (return, break, continue) should not be redundant
+    // "sonarjs/no-redundant-jump": "error",
+
+    // "try"-catch blocks should not be empty / should not just rethrow
+    // "sonarjs/no-useless-catch": "error",
+
+    // Non-existent operators "=+", "=-", "=!" should not be used (typo detection)
+    // "sonarjs/non-existent-operator": "error",
+
+    // Collections that are never queried/used should not be updated
+    // "sonarjs/no-unused-collection": "error",
+
+    // A value should not be checked/used after the function that produces it returns undefined (e.g. array.find())
+    // "sonarjs/no-use-of-empty-return-value": "error",
+
+    // Array-mutating methods should not be used misleadingly (e.g. Array.prototype.reverse() return value)
+    // "sonarjs/no-misleading-array-reverse": "error",
+
+    // Object/array element type mismatches and always-false comparisons should be avoided
+    // "sonarjs/different-types-comparison": "error",
+
+    // "delete" should not be used on arrays (use splice instead, avoids sparse arrays)
+    // "sonarjs/no-array-delete": "error",
+
+    // Function calls should not be made with fewer/mismatched arguments than declared params (with type info)
+    // "sonarjs/no-invalid-await": "error",
+
+    // Sections of code should not be commented out (dead code left behind)
+    // "sonarjs/no-commented-code": "error",
+
+    // Deprecated APIs (JSDoc @deprecated) should not be used
+    // "sonarjs/deprecation": "error",
+
+    // Variables should not be shadowed by nested scopes in confusing ways
+    // "sonarjs/no-globals-shadowing": "error",
+
+    // Return types should be used consistently within a function (no implicit any-mix returns)
+    // "sonarjs/no-invariant-returns": "error",
+
+
+    // ─── Code Smell / Maintainability ────────────────────────────────
+
+    // Collapsible "if" statements should be merged
+    // "sonarjs/no-collapsible-if": "error",
+
+    // String literals should not be duplicated (extract to constant)
+    // "sonarjs/no-duplicate-string": ["error", { threshold: 3 }],
+
+    // Boolean checks should not be inverted (e.g. !(a === b) instead of a !== b)
+    // "sonarjs/no-inverted-boolean-check": "error",
+
+    // Boolean literals should not be redundant (e.g. if (x === true))
+    // "sonarjs/no-redundant-boolean": "error",
+
+    // Conditionals should start on new lines (readability)
+    // "sonarjs/no-same-line-conditional": "error",
+
+    // "switch" statements should have at least 3 "case" clauses (else use if/else)
+    // "sonarjs/no-small-switch": "error",
+
+    // "switch" statements should not have too many "case" clauses
+    // "sonarjs/max-switch-cases": ["error", 30],
+
+    // A single "if" that always returns true/false should be a "return" statement
+    // "sonarjs/prefer-single-boolean-return": "error",
+
+    // An "if" chain that just assigns/returns a value should use an immediate return
+    // "sonarjs/prefer-immediate-return": "error",
+
+    // Object literal syntax should be used instead of "new Object()"/multi-line prop assignment
+    // "sonarjs/prefer-object-literal": "error",
+
+    // A "for" loop that could be a "while" loop should be simplified
+    // "sonarjs/prefer-while": "error",
+
+    // "for-in" loop should not iterate arrays (use for-of/forEach instead)
+    // "sonarjs/for-in": "error",
+
+    // Loop counters should not be assigned to from within the loop body (misplaced update)
+    // "sonarjs/updated-loop-counter": "error",
+
+    // Loop counters should be updated in the loop's update clause, not the body
+    // "sonarjs/misplaced-loop-counter": "error",
+
+    // Functions should not be defined inside loops (perf/closure bug risk)
+    // "sonarjs/function-inside-loop": "error",
+
+    // Related if/else-if branches should not have duplicate code that could be extracted
+    // "sonarjs/no-duplicated-branches": "error",
+
+    // Ternary/nested conditional expressions should not be deeply nested (readability)
+    // "sonarjs/no-nested-conditional": "error",
+
+    // Functions should not be nested too deeply
+    // "sonarjs/no-nested-functions": ["error", { threshold: 4 }],
+
+    // "switch" statements should not be nested within one another
+    // "sonarjs/no-nested-switch": "error",
+
+    // Template literals should not be nested inside one another
+    // "sonarjs/no-nested-template-literals": "error",
+
+    // Empty collections should not be accessed or iterated (always-empty logic bug)
+    // "sonarjs/no-empty-collection": "error",
+
+    // Boolean expressions should not be gratuitous (always true/false, dead logic)
+    // "sonarjs/no-gratuitous-expressions": "error",
+
+    // Redundant type aliases that just rename another type should be avoided (TS)
+    // "sonarjs/redundant-type-aliases": "error",
+
+    // Optional parameters/properties should not be redundantly typed with "| undefined" (TS)
+    // "sonarjs/no-redundant-optional": "error",
+
+    // Unnecessarily complex boolean expressions should be simplified
+    // "sonarjs/no-redundant-parentheses": "error",
+
+    // Object properties should be grouped using shorthand syntax where possible
+    // "sonarjs/shorthand-property-grouping": "error",
+
+    // Type guards should be used instead of unsafe type assertions where possible (TS)
+    // "sonarjs/prefer-type-guard": "error",
+
+    // Promise-returning functions should use async/await shorthand where clearer
+    // "sonarjs/prefer-promise-shorthand": "error",
+
+    // Unused imports should be removed
+    // "sonarjs/unused-import": "error",
+
+    // Variables should not have names that collide confusingly with outer-scope variables
+    // "sonarjs/variable-name-collision": "error",
+
+    // "TODO" comments should be tracked and not left indefinitely
+    // "sonarjs/todo-tag": "warn",
+
+    // "FIXME" comments should be tracked and not left indefinitely
+    // "sonarjs/fixme-tag": "warn",
+
+    // Track uses of "console.log" and similar debug leftovers (if plugin exposes it; otherwise use eslint core no-console)
+    // "sonarjs/no-dead-store": "error", // Value assigned to a variable should be used (dead store)
+
+
+    // ─── Security (still relevant for a Vue app hitting Supabase/APIs) ─
+
+    // Hardcoded credentials (passwords, tokens, API keys) should not appear in source
+    // "sonarjs/no-hardcoded-credentials": "error",
+
+    // Hardcoded IP addresses should not appear in source
+    // "sonarjs/no-hardcoded-ip": "error",
+
+    // Weak/insecure crypto ciphers should not be used
+    // "sonarjs/no-weak-cipher": "error",
+
+    // Weak/insecure hashing algorithms (MD5, SHA1) should not be used
+    // "sonarjs/hashing": "error",
+
+    // Cleartext protocols (http://, ftp://) should not be used for sensitive data
+    // "sonarjs/no-clear-text-protocols": "error",
+
+    // Pseudorandom number generators (Math.random) should not be used for security-sensitive contexts
+    // "sonarjs/pseudo-random": "error",
+
+
+    // ─── Regular Expressions (plain JS/TS, no framework needed) ──────
+
+    // Regex character classes should not contain duplicate characters
+    // "sonarjs/duplicates-in-character-class": "error",
+
+    // Character classes/alternations in regex should not contain a single, redundant character
+    // "sonarjs/single-char-in-character-classes": "error",
+
+    // Regexes should not contain empty groups
+    // "sonarjs/no-empty-group": "error",
+
+    // Regexes should not contain empty alternatives (e.g. "(a|)")
+    // "sonarjs/no-empty-alternatives": "error",
+
+    // Regexes should not have unnecessarily high complexity (perf / catastrophic backtracking risk)
+    // "sonarjs/regex-complexity": "error",
+
+    // Stateful regexes ("g"/"y" flags with .test/.exec in loops) should be used carefully
+    // "sonarjs/stateful-regex": "error",
+
+    // Named capture groups in regex should actually be used
+    // "sonarjs/unused-named-groups": "error",
+
+    // Regex alternation should have clear operator precedence (use non-capturing groups)
+    // "sonarjs/anchor-precedence": "error",
+
+    // Regexes should not contain multiple consecutive spaces (use {n} quantifier instead)
+    // "sonarjs/no-regex-spaces": "error",
+
+    // Reluctant quantifiers should be followed by an expression that can't match empty string
+    // "sonarjs/no-empty-after-reluctant": "error",
+
+    // Character class ranges should be in a logical order and non-overlapping
+    // "sonarjs/concise-regex": "error",
+  },
+},
